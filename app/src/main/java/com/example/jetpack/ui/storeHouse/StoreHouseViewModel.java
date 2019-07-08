@@ -24,15 +24,4 @@ public class StoreHouseViewModel extends BaseAndroidViewModel<StoreHouseNavigato
         super(application);
         this.repositroy = repositroy;
     }
-
-    public static class Factory implements ViewModelProvider.Factory {
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            if (modelClass == StoreHouseViewModel.class) {
-                return (T) new StoreHouseViewModel(App.getInstance(), Injection.provideGoodsRepositroy());
-            }
-            return null;
-        }
-    }
 }

@@ -34,6 +34,10 @@ public interface GoodsDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateGoods(GoodsEntity... entity);
 
-    @DELETE
+//    @DELETE
+//    void delete(GoodsEntity entity);
+
+    @Query("delete from store_goods")
     void deleteAllGoods();
+
 }

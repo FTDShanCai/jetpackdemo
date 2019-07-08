@@ -28,7 +28,7 @@ public class StoreHouseActivity extends BaseDataBindingActivity<ActivityStoreHou
 
     @Override
     public StoreHouseViewModel getViewModel() {
-        StoreHouseViewModel viewModel = ViewModelProviders.of(this, new StoreHouseViewModel.Factory()).get(StoreHouseViewModel.class);
+        StoreHouseViewModel viewModel = ViewModelProviders.of(this, new StoreHouseViewModelFactory()).get(StoreHouseViewModel.class);
         viewModel.onViewCrate(this);
         return viewModel;
     }
