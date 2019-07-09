@@ -11,8 +11,6 @@ import com.example.jetpack.entity.GoodsEntity;
 
 import java.util.List;
 
-import retrofit2.http.DELETE;
-
 /**
  * @author ddc
  * 邮箱: 931952032@qq.com
@@ -34,7 +32,7 @@ public interface GoodsDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateGoods(GoodsEntity... entity);
 
-//    @DELETE
+//    @DELETE  //这样写就会报错
 //    void delete(GoodsEntity entity);
 
     @Query("delete from store_goods")
