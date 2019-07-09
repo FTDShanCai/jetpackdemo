@@ -8,4 +8,6 @@ import com.example.jetpack.ui.BaseNavigator;
  * <p>description:
  */
 public interface StoreHouseNavigator extends BaseNavigator {
+
+    void goAddGoods();
 }

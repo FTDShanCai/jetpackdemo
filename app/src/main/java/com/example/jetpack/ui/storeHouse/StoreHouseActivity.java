@@ -6,14 +6,18 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.ArrayMap;
+import android.view.View;
 
 import com.example.jetpack.R;
+import com.example.jetpack.adapter.BaseDataBindingAdapter;
 import com.example.jetpack.adapter.StoreHouseAdapter;
 import com.example.jetpack.databinding.ActivityStoreHouseBinding;
 import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.ui.BaseDataBindingActivity;
+import com.example.jetpack.ui.addGoods.AddGoodsActivity;
 
 import java.util.ArrayList;
 
@@ -52,5 +56,17 @@ public class StoreHouseActivity extends BaseDataBindingActivity<ActivityStoreHou
         entities.add(new GoodsEntity("鸡肉堡4", 139, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
         entities.add(new GoodsEntity("鸡肉堡5", 23, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
         adapter.setNewData(entities);
+
+        adapter.setOnItemClickListener(new BaseDataBindingAdapter.OnItemClickListener<GoodsEntity>() {
+            @Override
+            public void onItemClick(View view, int position, GoodsEntity entity) {
+                goAddGoods();
+            }
+        });
+    }
+
+    @Override
+    public void goAddGoods() {
+        startActivity(new Intent(this, AddGoodsActivity.class));
     }
 }

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import type="com.example.jetpack.ui.addGoods.AddGoodsViewModel" />
+
+        <variable
+            name="model"
+            type="AddGoodsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        tools:context=".ui.addGoods.AddGoodsActivity">
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="tv_goods_name" />
+
+        <TextView
+            android:id="@+id/tv_goods_name"
+            style="@style/input_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品名称:"
+            app:layout_constraintBottom_toBottomOf="@id/et_goods_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_goods_name" />
+
+        <EditText
+            android:id="@+id/et_goods_name"
+            style="@style/input_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:hint="请输入商品名称"
+            app:layout_constraintLeft_toRightOf="@id/barrier"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_goods_count"
+            style="@style/input_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数量:"
+            app:layout_constraintBottom_toBottomOf="@id/et_goods_count"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_goods_count" />
+
+        <EditText
+            android:id="@+id/et_goods_count"
+            style="@style/input_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:hint="请输入商品数量"
+            android:inputType="numberSigned"
+            app:layout_constraintLeft_toRightOf="@id/barrier"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_goods_name" />
+
+        <TextView
+            android:id="@+id/tv_goods_desc"
+            style="@style/input_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品描述:"
+            app:layout_constraintBottom_toBottomOf="@id/et_goods_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_goods_desc" />
+
+        <EditText
+            android:id="@+id/et_goods_desc"
+            style="@style/input_edit_text_line5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:hint="请输入商品描述"
+            android:inputType="text"
+            app:layout_constraintLeft_toRightOf="@id/barrier"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_goods_count" />
+
+
+        <ImageView
+            android:id="@+id/iv_goods_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_insert_photo_grey_24dp"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_goods_desc" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ripple_submit_button"
+            android:elevation="0dp"
+            android:text="提交"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/iv_goods_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

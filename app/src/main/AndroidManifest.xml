@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/jetpack"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.storeHouse.StoreHouseActivity"></activity>
+        <activity android:name=".ui.addGoods.AddGoodsActivity"></activity>
+        <activity android:name=".ui.storeHouse.StoreHouseActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
