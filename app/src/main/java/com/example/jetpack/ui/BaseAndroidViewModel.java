@@ -1,6 +1,7 @@
 package com.example.jetpack.ui;
 
 import android.app.Application;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,7 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
  * 邮箱: 931952032@qq.com
  * <p>description:
  */
-public abstract class BaseAndroidViewModel<T> extends AndroidViewModel {
+public abstract class BaseAndroidViewModel<T extends BaseNavigator> extends AndroidViewModel {
     protected T navigator;
 
     public BaseAndroidViewModel(@NonNull Application application) {
@@ -25,4 +26,10 @@ public abstract class BaseAndroidViewModel<T> extends AndroidViewModel {
         this.navigator = null;
     }
 
+
+    public void toastMessage(String message) {
+        if (navigator == null) return;
+        if (TextUtils.isEmpty(message)) return;
+        navigator.toastMessage(message);
+    }
 }

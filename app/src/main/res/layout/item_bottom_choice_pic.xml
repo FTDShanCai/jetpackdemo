@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="mPath"
+            type="String" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.example.jetpack.util.widget.RectImageView
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@{mPath}" />
+
+    </LinearLayout>
+</layout>

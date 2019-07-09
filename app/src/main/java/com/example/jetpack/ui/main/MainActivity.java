@@ -39,4 +39,9 @@ public class MainActivity extends BaseDataBindingActivity<ActivityMainBinding, M
     public void goStoreMenu() {
 
     }
+
+    @Override
+    public void toastMessage(String message) {
+        toast(message);
+    }
 }

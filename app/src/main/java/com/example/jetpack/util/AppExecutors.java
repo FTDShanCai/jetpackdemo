@@ -15,8 +15,8 @@ import java.util.concurrent.Executors;
  * <p>description:
  */
 public class AppExecutors {
-    private static final int THREAD_COUNT = 3;
 
+    private static final int THREAD_COUNT = 3;
     private final Executor diskIO;
     private final Executor networkIO;
     private final Executor mainThread;

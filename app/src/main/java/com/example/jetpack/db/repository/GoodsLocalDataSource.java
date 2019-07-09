@@ -1,6 +1,7 @@
 package com.example.jetpack.db.repository;
 
 import com.example.jetpack.db.dao.GoodsDao;
+import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.util.AppExecutors;
 
 /**
@@ -32,7 +33,22 @@ public class GoodsLocalDataSource implements GoodsDataSource {
         appExecutors.getDiskIO().execute(new Runnable() {
             @Override
             public void run() {
-                callBack.onGoodsLoad(goodsDao.getAllGoods());
+                if (callBack != null) {
+                    callBack.onGoodsLoad(goodsDao.getAllGoods());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack) {
+        appExecutors.getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                goodsDao.insertGoods(entity);
+                if (callBack != null) {
+                    callBack.onComplete();
+                }
             }
         });
     }

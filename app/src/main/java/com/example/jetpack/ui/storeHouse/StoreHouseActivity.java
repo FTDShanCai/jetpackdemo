@@ -49,12 +49,6 @@ public class StoreHouseActivity extends BaseDataBindingActivity<ActivityStoreHou
 
     private void initDatas() {
         ArrayList<GoodsEntity> entities = new ArrayList<>();
-        entities.add(new GoodsEntity("鸡肉堡", 19, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
-        entities.add(new GoodsEntity("鸡肉堡1", 10, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
-        entities.add(new GoodsEntity("鸡肉堡2", 1, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
-        entities.add(new GoodsEntity("鸡肉堡3", 119, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
-        entities.add(new GoodsEntity("鸡肉堡4", 139, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
-        entities.add(new GoodsEntity("鸡肉堡5", 23, "鸡腿肉，生菜，番茄酱，沙拉酱等材料", R.mipmap.goods1));
         adapter.setNewData(entities);
 
         adapter.setOnItemClickListener(new BaseDataBindingAdapter.OnItemClickListener<GoodsEntity>() {
@@ -68,5 +62,10 @@ public class StoreHouseActivity extends BaseDataBindingActivity<ActivityStoreHou
     @Override
     public void goAddGoods() {
         startActivity(new Intent(this, AddGoodsActivity.class));
+    }
+
+    @Override
+    public void toastMessage(String message) {
+        toast(message);
     }
 }

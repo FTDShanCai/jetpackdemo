@@ -8,4 +8,8 @@ import com.example.jetpack.ui.BaseNavigator;
  * <p>description:
  */
 public interface AddGoodsNavigator extends BaseNavigator {
+
+    void onSubmit();
+
+    void showPicChoiceDialog();
 }

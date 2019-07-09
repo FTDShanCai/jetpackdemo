@@ -8,8 +8,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.jetpack.R;
 import com.example.jetpack.databinding.ActivityAddGoodsBinding;
 import com.example.jetpack.ui.BaseDataBindingActivity;
+import com.example.jetpack.util.widget.dialog.BottomChoicePicDialog;
 
 public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBinding, AddGoodsViewModel> implements AddGoodsNavigator {
+
+    private BottomChoicePicDialog dialog;
 
     @Override
     public int getLayoutId() {
@@ -18,7 +21,7 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
 
     @Override
     public AddGoodsViewModel getViewModel() {
-        AddGoodsViewModel viewModel = ViewModelProviders.of(this).get(AddGoodsViewModel.class);
+        AddGoodsViewModel viewModel = ViewModelProviders.of(this, new AddGoodsViewModelFactory()).get(AddGoodsViewModel.class);
         viewModel.onViewCrate(this);
         return viewModel;
     }
@@ -26,5 +29,29 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
     @Override
     public void initViewModel(@Nullable Bundle savedInstanceState) {
         mDataBinding.setModel(mViewModel);
+    }
+
+    @Override
+    public void onSubmit() {
+
+    }
+
+    @Override
+    public void showPicChoiceDialog() {
+        if (dialog == null) {
+            dialog = new BottomChoicePicDialog();
+            dialog.setCallBack(new BottomChoicePicDialog.CallBack() {
+                @Override
+                public void onChoice(String path) {
+                    mViewModel.setImgPath(path);
+                }
+            });
+        }
+        dialog.show(getSupportFragmentManager(), "pic");
+    }
+
+    @Override
+    public void toastMessage(String message) {
+        toast(message);
     }
 }

@@ -17,5 +17,11 @@ public interface GoodsDataSource {
         void onGoodsLoad(LiveData<List<GoodsEntity>> goods);
     }
 
+    interface OnCompleteCallBack {
+        void onComplete();
+    }
+
     void getAllGoods(GetGoodsCallBack callBack);
+
+    void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack);
 }

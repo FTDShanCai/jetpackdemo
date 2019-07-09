@@ -1,11 +1,15 @@
 package com.example.jetpack.ui;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+
+import com.example.jetpack.App;
 
 /**
  * @author ddc
@@ -31,5 +35,11 @@ public abstract class BaseDataBindingActivity<T extends ViewDataBinding, M exten
         mDataBinding.setLifecycleOwner(this);
         mViewModel = getViewModel();
         initViewModel(savedInstanceState);
+    }
+
+    public void toast(String message) {
+        if (!TextUtils.isEmpty(message)) {
+            Toast.makeText(App.getInstance(), message, Toast.LENGTH_SHORT).show();
+        }
     }
 }

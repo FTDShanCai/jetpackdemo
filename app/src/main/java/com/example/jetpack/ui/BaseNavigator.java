@@ -7,5 +7,5 @@ package com.example.jetpack.ui;
  */
 public interface BaseNavigator {
 
-
+    void toastMessage(String message);
 }

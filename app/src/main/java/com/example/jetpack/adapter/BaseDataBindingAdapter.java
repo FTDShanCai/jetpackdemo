@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ddc
@@ -18,10 +19,11 @@ import java.util.ArrayList;
  * <p>description:
  */
 public abstract class BaseDataBindingAdapter<T, D extends ViewDataBinding> extends RecyclerView.Adapter<BaseDataBindingAdapter.BaseViewHolder> {
-    private ArrayList<T> mDatas;
+    private List<T> mDatas;
     protected Context mContext;
     protected LayoutInflater mLayoutInflater;
     private OnItemClickListener<T> onItemClickListener;
+
 
     public BaseDataBindingAdapter() {
         this.mDatas = new ArrayList<>();
@@ -40,8 +42,8 @@ public abstract class BaseDataBindingAdapter<T, D extends ViewDataBinding> exten
         if (mLayoutInflater == null)
             mLayoutInflater = LayoutInflater.from(mContext);
 
-        View view = mLayoutInflater.inflate(getLayoutId(), parent, false);
-        return new BaseViewHolder(view);
+        D d = DataBindingUtil.inflate(mLayoutInflater, getLayoutId(), parent, false);
+        return new BaseViewHolder(d);
     }
 
     @Override
@@ -64,7 +66,7 @@ public abstract class BaseDataBindingAdapter<T, D extends ViewDataBinding> exten
      *
      * @param datas
      */
-    public void setNewData(ArrayList<T> datas) {
+    public void setNewData(List<T> datas) {
         this.mDatas = datas;
         notifyDataSetChanged();
     }
@@ -115,13 +117,13 @@ public abstract class BaseDataBindingAdapter<T, D extends ViewDataBinding> exten
      * 封装ViewHolder ,子类可以直接使用
      */
     public class BaseViewHolder extends RecyclerView.ViewHolder {
-        protected D mBinding;
+        public D mBinding;
 
         private SparseArray<View> mViewArray;
 
-        public BaseViewHolder(View itemView) {
-            super(itemView);
-            mBinding = DataBindingUtil.bind(itemView);
+        public BaseViewHolder(D d) {
+            super(d.getRoot());
+            mBinding = d;
             mViewArray = new SparseArray<>();
         }
 
@@ -154,11 +156,15 @@ public abstract class BaseDataBindingAdapter<T, D extends ViewDataBinding> exten
     }
 
 
-    public ArrayList<T> getDatas() {
+    public List<T> getDatas() {
         return mDatas;
     }
 
     public interface OnItemClickListener<T> {
         void onItemClick(View view, int position, T t);
     }
+
+
+
+
 }

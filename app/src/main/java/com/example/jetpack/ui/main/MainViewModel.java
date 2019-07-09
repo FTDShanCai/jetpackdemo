@@ -1,7 +1,6 @@
 package com.example.jetpack.ui.main;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 

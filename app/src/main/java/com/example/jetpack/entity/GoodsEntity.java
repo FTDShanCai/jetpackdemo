@@ -15,11 +15,11 @@ public class GoodsEntity {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String goodsName;
-    private int goodsCount;
+    private String goodsCount;
     private String goodsDesc;
-    private int goodsImg= R.mipmap.goods1;
+    private String goodsImg;
 
-    public GoodsEntity(String goodsName, int goodsCount, String goodsDesc, int goodsImg) {
+    public GoodsEntity(String goodsName, String goodsCount, String goodsDesc, String goodsImg) {
         this.goodsName = goodsName;
         this.goodsCount = goodsCount;
         this.goodsDesc = goodsDesc;
@@ -42,11 +42,11 @@ public class GoodsEntity {
         this.goodsName = goodsName;
     }
 
-    public int getGoodsCount() {
+    public String getGoodsCount() {
         return goodsCount;
     }
 
-    public void setGoodsCount(int goodsCount) {
+    public void setGoodsCount(String goodsCount) {
         this.goodsCount = goodsCount;
     }
 
@@ -58,11 +58,11 @@ public class GoodsEntity {
         this.goodsDesc = goodsDesc;
     }
 
-    public int getGoodsImg() {
+    public String getGoodsImg() {
         return goodsImg;
     }
 
-    public void setGoodsImg(int goodsImg) {
+    public void setGoodsImg(String goodsImg) {
         this.goodsImg = goodsImg;
     }
 }
