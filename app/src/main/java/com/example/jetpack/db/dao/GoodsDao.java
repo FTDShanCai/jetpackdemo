@@ -21,10 +21,10 @@ import java.util.List;
 public interface GoodsDao {
 
     @Query("select * from store_goods")
-    LiveData<List<GoodsEntity>> getAllGoods();
+    List<GoodsEntity> getAllGoods();
 
     @Query("select * from store_goods where goodsName like :Name")
-    LiveData<List<GoodsEntity>> queryGoods(String Name);
+    List<GoodsEntity> queryGoods(String Name);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertGoods(GoodsEntity entity);

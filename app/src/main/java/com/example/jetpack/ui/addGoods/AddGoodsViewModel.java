@@ -41,10 +41,13 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
         return desc;
     }
 
+    public MutableLiveData<String> getImgPath() {
+        return imgPath;
+    }
+
     public void setImgPath(String imgPath) {
         this.imgPath.setValue(imgPath);
     }
-
 
     public void showPicChoiceDialog() {
         if (navigator != null) navigator.showPicChoiceDialog();

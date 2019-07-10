@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.jetpack.Constants;
 import com.example.jetpack.R;
 import com.example.jetpack.databinding.ActivityAddGoodsBinding;
 import com.example.jetpack.ui.BaseDataBindingActivity;
@@ -33,7 +34,8 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
 
     @Override
     public void onSubmit() {
-
+        setResult(Constants.ResultRefresh);
+        finish();
     }
 
     @Override

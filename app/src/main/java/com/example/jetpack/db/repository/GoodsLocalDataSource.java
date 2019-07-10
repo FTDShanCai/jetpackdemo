@@ -34,7 +34,12 @@ public class GoodsLocalDataSource implements GoodsDataSource {
             @Override
             public void run() {
                 if (callBack != null) {
-                    callBack.onGoodsLoad(goodsDao.getAllGoods());
+                    appExecutors.getMainThread().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.onGoodsLoad(goodsDao.getAllGoods());
+                        }
+                    });
                 }
             }
         });
@@ -47,7 +52,12 @@ public class GoodsLocalDataSource implements GoodsDataSource {
             public void run() {
                 goodsDao.insertGoods(entity);
                 if (callBack != null) {
-                    callBack.onComplete();
+                    appExecutors.getMainThread().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.onComplete();
+                        }
+                    });
                 }
             }
         });

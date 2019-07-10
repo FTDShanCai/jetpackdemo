@@ -3,14 +3,11 @@ package com.example.jetpack.util.widget.dialog;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jetpack.R;
 import com.example.jetpack.adapter.BaseDataBindingAdapter;
 import com.example.jetpack.adapter.BottomChoicePicAdapter;
 import com.example.jetpack.databinding.DialogBottomChoicePicBinding;
-import com.example.jetpack.databinding.ItemBottomChoicePicBinding;
 import com.example.jetpack.util.Tools;
 
 import java.util.List;
@@ -53,13 +50,14 @@ public class BottomChoicePicDialog extends BaseDialog<DialogBottomChoicePicBindi
         adapter.setOnItemClickListener(new BaseDataBindingAdapter.OnItemClickListener<String>() {
             @Override
             public void onItemClick(View view, int position, String s) {
+                dismiss();
                 if (callBack != null) callBack.onChoice(s);
             }
         });
         Observable.create(new ObservableOnSubscribe<List<String>>() {
             @Override
             public void subscribe(ObservableEmitter<List<String>> emitter) throws Exception {
-                emitter.onNext(Tools.getAssertPics());
+                emitter.onNext(Tools.getNetWorkUrl());
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

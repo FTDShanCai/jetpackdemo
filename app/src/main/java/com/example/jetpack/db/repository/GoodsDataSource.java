@@ -14,7 +14,7 @@ import java.util.List;
 public interface GoodsDataSource {
 
     interface GetGoodsCallBack {
-        void onGoodsLoad(LiveData<List<GoodsEntity>> goods);
+        void onGoodsLoad(List<GoodsEntity> goods);
     }
 
     interface OnCompleteCallBack {

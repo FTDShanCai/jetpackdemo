@@ -1,13 +1,18 @@
 package com.example.jetpack.util;
 
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.jetpack.App;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @author ddc
@@ -19,14 +24,23 @@ public abstract class DataBinDingUtil implements androidx.databinding.DataBindin
 
     @BindingAdapter({"android:src"})
     public static void setImageResource(ImageView imageView, String path) {
-        Log.d("ftd", "setImageResource  path:" + path);
-        Glide.with(imageView.getContext()).load(new File(PATH_HEAD + path)).into(imageView);
+        Glide.with(imageView.getContext()).load(path).into(imageView);
     }
 
     @BindingAdapter({"android:src"})
     public static void setImageResource(ImageView imageView, int resource) {
-        Log.d("ftd", "setImageResource  resource:" + resource);
         imageView.setImageResource(resource);
     }
 
+    public static Bitmap getAssetsBitmap(String path) {
+        AssetManager am = App.getInstance().getAssets();
+        InputStream inputStream = null;
+        try {
+            inputStream = am.open(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+        return bitmap;
+    }
 }
