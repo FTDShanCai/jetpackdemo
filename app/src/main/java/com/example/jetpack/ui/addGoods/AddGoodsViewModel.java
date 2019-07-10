@@ -22,7 +22,7 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> count = new MutableLiveData<>();
     private MutableLiveData<String> desc = new MutableLiveData<>();
-    private MutableLiveData<String> imgPath = new MutableLiveData<>();
+    public MutableLiveData<String> imgPath = new MutableLiveData<>();
 
     public AddGoodsViewModel(@NonNull Application application, GoodsRepositroy repositroy) {
         super(application);
@@ -41,13 +41,13 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
         return desc;
     }
 
-    public MutableLiveData<String> getImgPath() {
-        return imgPath;
-    }
-
-    public void setImgPath(String imgPath) {
-        this.imgPath.setValue(imgPath);
-    }
+//    public MutableLiveData<String> getImgPath() {
+//        return imgPath;
+//    }
+//
+//    public void setImgPath(String imgPath) {
+//        this.imgPath.setValue(imgPath);
+//    }
 
     public void showPicChoiceDialog() {
         if (navigator != null) navigator.showPicChoiceDialog();

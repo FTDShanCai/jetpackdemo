@@ -45,7 +45,7 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
             dialog.setCallBack(new BottomChoicePicDialog.CallBack() {
                 @Override
                 public void onChoice(String path) {
-                    mViewModel.setImgPath(path);
+                    mViewModel.imgPath.setValue(path);
                 }
             });
         }
