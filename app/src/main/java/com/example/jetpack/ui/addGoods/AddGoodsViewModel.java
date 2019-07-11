@@ -4,6 +4,7 @@ import android.app.Application;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.jetpack.db.repository.GoodsDataSource;
@@ -19,6 +20,7 @@ import com.example.jetpack.ui.BaseAndroidViewModel;
 public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
 
     private GoodsRepositroy repositroy;
+    private MutableLiveData<Boolean> isVisible = new MutableLiveData<>();
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> count = new MutableLiveData<>();
     private MutableLiveData<String> desc = new MutableLiveData<>();
@@ -27,6 +29,7 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
     public AddGoodsViewModel(@NonNull Application application, GoodsRepositroy repositroy) {
         super(application);
         this.repositroy = repositroy;
+        isVisible.postValue(false);
     }
 
     public MutableLiveData<String> getName() {
@@ -41,7 +44,11 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
         return desc;
     }
 
-//    public MutableLiveData<String> getImgPath() {
+    public MutableLiveData<Boolean> getIsVisible() {
+        return isVisible;
+    }
+
+    //    public MutableLiveData<String> getImgPath() {
 //        return imgPath;
 //    }
 //

@@ -99,12 +99,13 @@
 
         <ImageView
             android:id="@+id/iv_goods_img"
+            error="@{@drawable/ic_insert_photo_grey_24dp}"
+            imageUrl="@{model.imgPath}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:background="@color/colorAccent"
             android:onClick="@{()->model.showPicChoiceDialog()}"
-            android:src="@{model.imgPath}"
+            android:scaleType="fitCenter"
             app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
