@@ -31,7 +31,7 @@ public class AppExecutors {
         this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(THREAD_COUNT), new MainThreadExecutor());
     }
 
-    private static class MainThreadExecutor implements Executor {
+    static class MainThreadExecutor implements Executor {
 
         private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 

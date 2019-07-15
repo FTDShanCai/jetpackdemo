@@ -20,8 +20,8 @@ public class GoodsLocalDataSource implements GoodsDataSource {
         return instance;
     }
 
-    private AppExecutors appExecutors;
-    private GoodsDao goodsDao;
+    AppExecutors appExecutors;
+    GoodsDao goodsDao;
 
     private GoodsLocalDataSource(AppExecutors appExecutors, GoodsDao goodsDao) {
         this.appExecutors = appExecutors;

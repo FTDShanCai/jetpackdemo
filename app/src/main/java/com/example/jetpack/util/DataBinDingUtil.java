@@ -38,7 +38,7 @@ public abstract class DataBinDingUtil implements androidx.databinding.DataBindin
         imageView.setImageResource(resource);
     }
 
-    @BindingAdapter("app:goneUnless")
+    @BindingAdapter("goneUnless")
     public static void goneUnless(View view, boolean visible) {
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }

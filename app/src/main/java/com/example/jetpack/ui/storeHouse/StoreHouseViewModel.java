@@ -3,17 +3,13 @@ package com.example.jetpack.ui.storeHouse;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.arch.core.util.Function;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 
 import com.example.jetpack.db.repository.GoodsDataSource;
 import com.example.jetpack.db.repository.GoodsRepositroy;
 import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.ui.BaseAndroidViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +21,7 @@ public class StoreHouseViewModel extends BaseAndroidViewModel<StoreHouseNavigato
 
     private GoodsRepositroy repositroy;
 
-    private MutableLiveData<List<GoodsEntity>> goods = new MutableLiveData<>();
+    MutableLiveData<List<GoodsEntity>> goods = new MutableLiveData<>();
 
     public StoreHouseViewModel(@NonNull Application application, GoodsRepositroy repositroy) {
         super(application);

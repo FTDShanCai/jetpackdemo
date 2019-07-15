@@ -22,7 +22,7 @@ import com.example.jetpack.ui.addGoods.AddGoodsActivity;
 import java.util.List;
 
 public class StoreHouseActivity extends BaseDataBindingActivity<ActivityStoreHouseBinding, StoreHouseViewModel> implements StoreHouseNavigator {
-    private StoreHouseAdapter adapter;
+    StoreHouseAdapter adapter;
 
     @Override
     public int getLayoutId() {

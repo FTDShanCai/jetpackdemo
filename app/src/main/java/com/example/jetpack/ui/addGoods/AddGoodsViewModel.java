@@ -12,6 +12,8 @@ import com.example.jetpack.db.repository.GoodsRepositroy;
 import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.ui.BaseAndroidViewModel;
 
+import io.reactivex.Scheduler;
+
 /**
  * @author ddc
  * 邮箱: 931952032@qq.com
@@ -86,6 +88,8 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
                 navigator.onSubmit();
             }
         });
+
+
     }
 
 }

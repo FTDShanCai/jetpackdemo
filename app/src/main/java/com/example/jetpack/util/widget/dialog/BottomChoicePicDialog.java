@@ -26,9 +26,9 @@ import io.reactivex.schedulers.Schedulers;
  * <p>description:
  */
 public class BottomChoicePicDialog extends BaseDialog<DialogBottomChoicePicBinding> {
-    private BottomChoicePicAdapter adapter = new BottomChoicePicAdapter();
+    BottomChoicePicAdapter adapter = new BottomChoicePicAdapter();
 
-    private CallBack callBack;
+    CallBack callBack;
 
     public void setCallBack(CallBack callBack) {
         this.callBack = callBack;

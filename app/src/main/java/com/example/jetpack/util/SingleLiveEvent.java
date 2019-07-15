@@ -19,7 +19,7 @@ public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
     private static final String TAG = "SingleLiveEvent";
 
-    private final AtomicBoolean mPending = new AtomicBoolean(false);
+    final AtomicBoolean mPending = new AtomicBoolean(false);
 
     @MainThread
     public void observe(@Nullable LifecycleOwner owner, @Nullable final Observer<? super T> observer) {

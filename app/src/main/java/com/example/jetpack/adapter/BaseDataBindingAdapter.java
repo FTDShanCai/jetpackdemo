@@ -19,10 +19,10 @@ import java.util.List;
  * <p>description:
  */
 public abstract class BaseDataBindingAdapter<T, D extends ViewDataBinding> extends RecyclerView.Adapter<BaseDataBindingAdapter.BaseViewHolder> {
-    private List<T> mDatas;
-    protected Context mContext;
-    protected LayoutInflater mLayoutInflater;
-    private OnItemClickListener<T> onItemClickListener;
+    List<T> mDatas;
+    private Context mContext;
+    private LayoutInflater mLayoutInflater;
+    OnItemClickListener<T> onItemClickListener;
 
 
     public BaseDataBindingAdapter() {
