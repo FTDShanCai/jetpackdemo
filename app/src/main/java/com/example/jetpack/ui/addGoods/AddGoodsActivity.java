@@ -15,6 +15,9 @@ import android.view.Window;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.camera.core.CameraX;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureConfig;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -23,8 +26,12 @@ import com.example.jetpack.Constants;
 import com.example.jetpack.R;
 import com.example.jetpack.databinding.ActivityAddGoodsBinding;
 import com.example.jetpack.ui.BaseDataBindingActivity;
+import com.example.jetpack.ui.camerax.CarmeraXActivity;
 import com.example.jetpack.util.MyLog;
+import com.example.jetpack.util.PermissionUtil;
 import com.example.jetpack.util.widget.dialog.BottomChoicePicDialog;
+
+import java.io.File;
 
 public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBinding, AddGoodsViewModel> implements AddGoodsNavigator {
 
@@ -57,13 +64,15 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
     public void showPicChoiceDialog() {
 
         AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setItems(new String[]{"网络资源", "本地图库"}, new DialogInterface.OnClickListener() {
+                .setItems(new String[]{"网络资源", "本地图库", "相机"}, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {
                             openNetWorkImg();
                         } else if (which == 1) {
                             openGallery();
+                        } else if (which == 2) {
+                            openCameraX();
                         }
                     }
                 }).create();
@@ -89,18 +98,22 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
     }
 
     void openGallery() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            boolean shouldeShowRequestPermissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-//            if (shouldeShowRequestPermissionRationale) {
-//                toast("请去app设置开启相关权限~");
-//            } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.RequestCode);
-//            }
-        } else {
-            MyLog.d("Environment:" + Environment.getExternalStorageDirectory().getPath());
+        if (PermissionUtil.hasPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
             startActivityForResult(intent, Constants.RequestCode);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.RequestCode);
+        }
+    }
+
+    void openCameraX() {
+        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+        if (PermissionUtil.hasPermission(this, permissions)) {
+            startActivity(new Intent(this, CarmeraXActivity.class));
+        } else {
+            ActivityCompat.requestPermissions(this, permissions, Constants.RequestCode);
         }
     }
 

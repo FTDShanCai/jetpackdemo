@@ -3,5 +3,7 @@
     <files-path
         name="my_images"
         path="images/" />
-
+    <external-path
+        name="photos"
+        path="Pictures" />
 </paths>

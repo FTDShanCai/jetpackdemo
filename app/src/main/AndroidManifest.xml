@@ -4,6 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".App"
@@ -13,16 +19,16 @@
         android:roundIcon="@mipmap/jetpack"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.camerax.CarmeraXActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.jetpack"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-
         </provider>
 
         <activity android:name=".ui.addGoods.AddGoodsActivity" />
@@ -34,8 +40,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>
