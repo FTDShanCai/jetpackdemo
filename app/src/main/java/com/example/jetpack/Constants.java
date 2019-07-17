@@ -6,6 +6,13 @@ package com.example.jetpack;
  * <p>description:
  */
 public class Constants {
+
+    public class Key{
+        public final static String PATH= "path";
+    }
+
+
     public final static int RequestCode = 101;
+    public final static int RequestCamerax = 102;
     public final static int ResultRefresh = 200;
 }

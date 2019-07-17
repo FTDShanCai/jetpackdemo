@@ -111,7 +111,7 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
         String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         if (PermissionUtil.hasPermission(this, permissions)) {
-            startActivity(new Intent(this, CarmeraXActivity.class));
+            startActivityForResult(new Intent(this, CarmeraXActivity.class), Constants.RequestCamerax);
         } else {
             ActivityCompat.requestPermissions(this, permissions, Constants.RequestCode);
         }
@@ -145,6 +145,9 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
                     cursor.close();
                 }
             }
+        } else if (requestCode == Constants.RequestCamerax && resultCode == Constants.ResultRefresh && data != null) {
+            String path = data.getStringExtra(Constants.Key.PATH);
+            mViewModel.imgPath.setValue(path);
         }
     }
 
