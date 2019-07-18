@@ -14,6 +14,6 @@ public class Injection {
 
     public static GoodsRepositroy provideGoodsRepositroy() {
         GoodsDao goodsDao = StoreDataBase.getInstance().goodsDao();
-        return GoodsRepositroy.getInstance(GoodsLocalDataSource.getInstance(new AppExecutors(), goodsDao));
+        return GoodsRepositroy.getInstance(GoodsLocalDataSource.getInstance(goodsDao));
     }
 }

@@ -4,6 +4,8 @@ import com.example.jetpack.db.dao.GoodsDao;
 import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.util.AppExecutors;
 
+import javax.inject.Inject;
+
 /**
  * @author ddc
  * 邮箱: 931952032@qq.com
@@ -13,18 +15,19 @@ public class GoodsLocalDataSource implements GoodsDataSource {
 
     private static volatile GoodsLocalDataSource instance;
 
-    public static GoodsLocalDataSource getInstance(AppExecutors appExecutors, GoodsDao goodsDao) {
+    public static GoodsLocalDataSource getInstance(GoodsDao goodsDao) {
         if (instance == null) {
-            instance = new GoodsLocalDataSource(appExecutors, goodsDao);
+            instance = new GoodsLocalDataSource(goodsDao);
         }
         return instance;
     }
 
+    @Inject
     AppExecutors appExecutors;
+
     GoodsDao goodsDao;
 
-    private GoodsLocalDataSource(AppExecutors appExecutors, GoodsDao goodsDao) {
-        this.appExecutors = appExecutors;
+    private GoodsLocalDataSource(GoodsDao goodsDao) {
         this.goodsDao = goodsDao;
     }
 

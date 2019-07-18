@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.Window;
@@ -15,11 +14,7 @@ import android.view.Window;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.camera.core.CameraX;
-import androidx.camera.core.ImageCapture;
-import androidx.camera.core.ImageCaptureConfig;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.jetpack.Constants;
@@ -30,8 +25,6 @@ import com.example.jetpack.ui.camerax.CarmeraXActivity;
 import com.example.jetpack.util.MyLog;
 import com.example.jetpack.util.PermissionUtil;
 import com.example.jetpack.util.widget.dialog.BottomChoicePicDialog;
-
-import java.io.File;
 
 public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBinding, AddGoodsViewModel> implements AddGoodsNavigator {
 
