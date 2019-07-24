@@ -1,7 +1,5 @@
 package com.example.jetpack.db.repository;
 
-import androidx.lifecycle.LiveData;
-
 import com.example.jetpack.entity.GoodsEntity;
 
 import java.util.List;

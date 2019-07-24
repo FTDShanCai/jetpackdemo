@@ -17,18 +17,18 @@ public class GoodsLocalDataSource implements GoodsDataSource {
 
     public static GoodsLocalDataSource getInstance(GoodsDao goodsDao) {
         if (instance == null) {
-            instance = new GoodsLocalDataSource(goodsDao);
+            instance = new GoodsLocalDataSource(goodsDao, new AppExecutors());
         }
         return instance;
     }
 
-    @Inject
     AppExecutors appExecutors;
 
     GoodsDao goodsDao;
 
-    private GoodsLocalDataSource(GoodsDao goodsDao) {
+    private GoodsLocalDataSource(GoodsDao goodsDao, AppExecutors appExecutors) {
         this.goodsDao = goodsDao;
+        this.appExecutors = appExecutors;
     }
 
     @Override

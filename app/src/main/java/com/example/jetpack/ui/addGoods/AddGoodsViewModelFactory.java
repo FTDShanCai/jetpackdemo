@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.jetpack.App;
 import com.example.jetpack.db.Injection;
-import com.example.jetpack.ui.storeHouse.StoreHouseViewModel;
 
 public class AddGoodsViewModelFactory implements ViewModelProvider.Factory {
     @NonNull

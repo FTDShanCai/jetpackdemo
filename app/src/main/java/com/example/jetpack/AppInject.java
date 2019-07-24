@@ -12,7 +12,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.jetpack.di.DaggerAppComponent;
-import com.example.jetpack.di.InjectAble;
 
 import dagger.android.AndroidInjection;
 import dagger.android.HasActivityInjector;
@@ -74,23 +73,6 @@ public class AppInject {
         if (activity instanceof HasActivityInjector) {
             AndroidInjection.inject(activity);
         }
-
-        if (activity instanceof FragmentActivity) {
-            FragmentActivity fragmentActivity = (FragmentActivity) activity;
-
-            fragmentActivity.getSupportFragmentManager()
-                    .registerFragmentLifecycleCallbacks(new FragmentLifecycleCallbacks() {
-                        @Override
-                        public void onFragmentCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @Nullable Bundle savedInstanceState) {
-                            super.onFragmentCreated(fm, f, savedInstanceState);
-                            if (f instanceof InjectAble) {
-                                AndroidSupportInjection.inject(f);
-                            }
-                        }
-                    }, true);
-
-        }
-
     }
 
 }
