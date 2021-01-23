@@ -18,21 +18,21 @@ import java.util.List;
  * <p>description:
  */
 @Dao
-public interface GoodsDao {
+public abstract class GoodsDao {
 
     @Query("select * from store_goods")
-    List<GoodsEntity> getAllGoods();
+    public abstract List<GoodsEntity> getAllGoods();
 
     @Query("select * from store_goods where id == :id")
-    GoodsEntity queryGoods(long id);
+    public abstract GoodsEntity queryGoods(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertGoods(GoodsEntity entity);
+    abstract void insertGoods(GoodsEntity entity);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    int updateGoods(GoodsEntity... entity);
+    abstract int updateGoods(GoodsEntity... entity);
 
-    default void insertOrUpdate(GoodsEntity... entities) {
+    public void insertOrUpdate(GoodsEntity... entities) {
         for (GoodsEntity entity : entities) {
             GoodsEntity goodsEntity = queryGoods(entity.getId());
             if (goodsEntity != null) {
@@ -45,9 +45,9 @@ public interface GoodsDao {
 
 
     @Delete
-    int delete(GoodsEntity... entity);
+    public abstract int delete(GoodsEntity... entity);
 
     @Query("delete from store_goods")
-    void deleteAllGoods();
+    public abstract void deleteAllGoods();
 
 }

@@ -28,7 +28,5 @@ public interface GoodsDataSource {
 
     void queryGoods(long id, QueryGoodsCallBack callBack);
 
-    void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack);
-
     void insertOrUpdateGoods(OnCompleteCallBack callBack, GoodsEntity... entity);
 }

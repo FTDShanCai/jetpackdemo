@@ -59,16 +59,6 @@ public class GoodsLocalDataSource implements GoodsDataSource {
         });
     }
 
-    @Override
-    public void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack) {
-        appExecutors.getDiskIO().execute(() -> {
-            goodsDao.insertGoods(entity);
-            if (callBack != null) {
-                appExecutors.getMainThread().execute(callBack::onComplete);
-            }
-        });
-    }
-
     @SuppressLint("LogConditional")
     @Override
     public void insertOrUpdateGoods(OnCompleteCallBack callBack, GoodsEntity... entity) {
