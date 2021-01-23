@@ -55,7 +55,6 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
 
     @Override
     public void showPicChoiceDialog() {
-
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setItems(new String[]{"网络资源", "本地图库", "相机"}, new DialogInterface.OnClickListener() {
                     @Override
@@ -75,6 +74,11 @@ public class AddGoodsActivity extends BaseDataBindingActivity<ActivityAddGoodsBi
         }
         alertDialog.show();
 
+    }
+
+    @Override
+    public Intent getIntentData() {
+        return getIntent();
     }
 
     void openNetWorkImg() {

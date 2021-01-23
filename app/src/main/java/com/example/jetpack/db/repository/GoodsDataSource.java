@@ -15,11 +15,20 @@ public interface GoodsDataSource {
         void onGoodsLoad(List<GoodsEntity> goods);
     }
 
+
+    interface QueryGoodsCallBack {
+        void onGoodsLoad(GoodsEntity goods);
+    }
+
     interface OnCompleteCallBack {
         void onComplete();
     }
 
     void getAllGoods(GetGoodsCallBack callBack);
 
+    void queryGoods(long id, QueryGoodsCallBack callBack);
+
     void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack);
+
+    void insertOrUpdateGoods(OnCompleteCallBack callBack, GoodsEntity... entity);
 }

@@ -1,10 +1,11 @@
 package com.example.jetpack.db.repository;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import com.example.jetpack.db.dao.GoodsDao;
 import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.util.AppExecutors;
-
-import javax.inject.Inject;
 
 /**
  * @author ddc
@@ -49,20 +50,34 @@ public class GoodsLocalDataSource implements GoodsDataSource {
     }
 
     @Override
-    public void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack) {
-        appExecutors.getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                goodsDao.insertGoods(entity);
-                if (callBack != null) {
-                    appExecutors.getMainThread().execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            callBack.onComplete();
-                        }
-                    });
-                }
+    public void queryGoods(long id, QueryGoodsCallBack callBack) {
+        appExecutors.getDiskIO().execute(() -> {
+            GoodsEntity goodsEntity = goodsDao.queryGoods(id);
+            if (callBack != null) {
+                appExecutors.getMainThread().execute(() -> callBack.onGoodsLoad(goodsEntity));
             }
         });
     }
+
+    @Override
+    public void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack) {
+        appExecutors.getDiskIO().execute(() -> {
+            goodsDao.insertGoods(entity);
+            if (callBack != null) {
+                appExecutors.getMainThread().execute(callBack::onComplete);
+            }
+        });
+    }
+
+    @SuppressLint("LogConditional")
+    @Override
+    public void insertOrUpdateGoods(OnCompleteCallBack callBack, GoodsEntity... entity) {
+        appExecutors.getDiskIO().execute(() -> {
+            goodsDao.insertOrUpdate(entity);
+            if (callBack != null) {
+                appExecutors.getMainThread().execute(callBack::onComplete);
+            }
+        });
+    }
+
 }

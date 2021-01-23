@@ -3,7 +3,6 @@ package com.example.jetpack.db;
 import com.example.jetpack.db.dao.GoodsDao;
 import com.example.jetpack.db.repository.GoodsLocalDataSource;
 import com.example.jetpack.db.repository.GoodsRepositroy;
-import com.example.jetpack.util.AppExecutors;
 
 /**
  * @author ddc

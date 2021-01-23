@@ -65,7 +65,6 @@ public abstract class DataBinDingUtil implements androidx.databinding.DataBindin
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-        return bitmap;
+        return BitmapFactory.decodeStream(inputStream);
     }
 }

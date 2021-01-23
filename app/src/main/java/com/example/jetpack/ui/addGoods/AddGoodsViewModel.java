@@ -1,18 +1,16 @@
 package com.example.jetpack.ui.addGoods;
 
 import android.app.Application;
+import android.content.Intent;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.jetpack.db.repository.GoodsDataSource;
 import com.example.jetpack.db.repository.GoodsRepositroy;
 import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.ui.BaseAndroidViewModel;
-
-import io.reactivex.Scheduler;
 
 /**
  * @author ddc
@@ -27,11 +25,39 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
     private MutableLiveData<String> count = new MutableLiveData<>();
     private MutableLiveData<String> desc = new MutableLiveData<>();
     public MutableLiveData<String> imgPath = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isEdit = new MutableLiveData<>();
+
+    public String SUBMIT = "提交";
+    public String UPDATE = "修改";
+
+    long goodsId = -1;
+
 
     public AddGoodsViewModel(@NonNull Application application, GoodsRepositroy repositroy) {
         super(application);
         this.repositroy = repositroy;
         isVisible.postValue(false);
+    }
+
+    @Override
+    public void onViewCrate(AddGoodsNavigator navigator) {
+        super.onViewCrate(navigator);
+        Intent intent = navigator.getIntentData();
+        if (intent != null) {
+            goodsId = intent.getLongExtra("goodsId", -1);
+            if (goodsId != -1) {
+                repositroy.queryGoods(goodsId, goods -> {
+                    if (goods == null) return;
+                    isEdit.postValue(true);
+                    name.postValue(goods.getGoodsName());
+                    count.postValue(goods.getGoodsCount());
+                    desc.postValue(goods.getGoodsDesc());
+                    imgPath.postValue(goods.getGoodsImg());
+                });
+            }
+        }
+
+
     }
 
     public MutableLiveData<String> getName() {
@@ -81,14 +107,17 @@ public class AddGoodsViewModel extends BaseAndroidViewModel<AddGoodsNavigator> {
         }
 
         GoodsEntity entity = new GoodsEntity(name.getValue(), count.getValue(), desc.getValue(), imgPath.getValue());
-        repositroy.insertGoods(entity, new GoodsDataSource.OnCompleteCallBack() {
-            @Override
-            public void onComplete() {
-                toastMessage("保存成功");
-                navigator.onSubmit();
-            }
-        });
-
+        if (goodsId != -1) {
+            entity.setId(goodsId);
+        }
+        repositroy.insertOrUpdateGoods(() -> {
+            toastMessage("保存成功");
+            navigator.onSubmit();
+        }, entity);
+//        repositroy.insertGoods(entity, () -> {
+//            toastMessage("保存成功");
+//            navigator.onSubmit();
+//        });
 
     }
 

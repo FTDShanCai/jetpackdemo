@@ -17,8 +17,18 @@ public class GoodsRepositroy implements GoodsDataSource {
     }
 
     @Override
+    public void queryGoods(long id, QueryGoodsCallBack callBack) {
+        localDataSource.queryGoods(id, callBack);
+    }
+
+    @Override
     public void insertGoods(GoodsEntity entity, OnCompleteCallBack callBack) {
-        localDataSource.insertGoods(entity,callBack);
+        localDataSource.insertGoods(entity, callBack);
+    }
+
+    @Override
+    public void insertOrUpdateGoods(OnCompleteCallBack callBack, GoodsEntity... entity) {
+        localDataSource.insertOrUpdateGoods(callBack, entity);
     }
 
 

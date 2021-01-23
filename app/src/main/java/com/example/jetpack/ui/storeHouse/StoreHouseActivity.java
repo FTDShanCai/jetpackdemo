@@ -2,24 +2,19 @@ package com.example.jetpack.ui.storeHouse;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jetpack.Constants;
 import com.example.jetpack.R;
-import com.example.jetpack.adapter.BaseDataBindingAdapter;
 import com.example.jetpack.adapter.StoreHouseAdapter;
 import com.example.jetpack.databinding.ActivityStoreHouseBinding;
 import com.example.jetpack.entity.GoodsEntity;
 import com.example.jetpack.ui.BaseDataBindingActivity;
 import com.example.jetpack.ui.addGoods.AddGoodsActivity;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -50,20 +45,17 @@ public class StoreHouseActivity extends BaseDataBindingActivity<ActivityStoreHou
     }
 
     private void initDatas() {
-        adapter.setOnItemClickListener(new BaseDataBindingAdapter.OnItemClickListener<GoodsEntity>() {
-            @Override
-            public void onItemClick(View view, int position, GoodsEntity entity) {
-                goAddGoods();
-            }
-        });
-
-        mViewModel.getGoods().observe(this, new Observer<List<GoodsEntity>>() {
-            @Override
-            public void onChanged(List<GoodsEntity> entities) {
-                adapter.setNewData(entities);
-            }
-        });
+        adapter.setOnItemClickListener((view, position, entity) -> goEditGoods(position));
+        mViewModel.getGoods().observe(this, entities ->
+                adapter.setNewData(entities));
         mViewModel.refreshGoods();
+    }
+
+    private void goEditGoods(int position) {
+        GoodsEntity goodsEntity = adapter.getDatas().get(position);
+        Intent intent = new Intent(this, AddGoodsActivity.class);
+        intent.putExtra("goodsId", goodsEntity.getId());
+        startActivityForResult(intent, Constants.RequestCode);
     }
 
     @Override

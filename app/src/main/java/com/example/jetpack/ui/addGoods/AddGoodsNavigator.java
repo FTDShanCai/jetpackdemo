@@ -1,5 +1,7 @@
 package com.example.jetpack.ui.addGoods;
 
+import android.content.Intent;
+
 import com.example.jetpack.ui.BaseNavigator;
 
 /**
@@ -12,4 +14,6 @@ public interface AddGoodsNavigator extends BaseNavigator {
     void onSubmit();
 
     void showPicChoiceDialog();
+
+    Intent getIntentData();
 }
